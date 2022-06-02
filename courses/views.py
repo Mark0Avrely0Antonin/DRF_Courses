@@ -1,8 +1,8 @@
 from rest_framework import generics, permissions
 
-from .models import *
-from .serializers import *
-from .permissions import *
+from courses.models import *
+from courses.serializers import *
+from courses.permissions import *
 
 
 class List_API_Courses(generics.ListAPIView):
@@ -28,7 +28,7 @@ class Update_API_Course(generics.RetrieveUpdateAPIView):
     permission_classes = (Permission_Update_Course, permissions.IsAdminUser)
 
 
-class Retrieve_API_Course(generics.RetrieveAPIView):
+class RetrieveAPICourse(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = Read_Course_Serialzier
-    permission_classes = (permissions.IsAuthenticated, Permission_Read_Course, )
+    permission_classes = (permissions.IsAdminUser, Permission_Read_Course, )
