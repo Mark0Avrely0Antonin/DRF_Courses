@@ -1,34 +1,34 @@
 from rest_framework import generics, permissions
 
-from courses.models import *
-from courses.serializers import *
-from courses.permissions import *
+from courses.models import Course
+from courses.serializers import ReadCourseSerialzier, CreateAndUpdateSerializer
+from courses.permissions import PermissionReadCourse, PermissionUpdateCourse
 
 
-class List_API_Courses(generics.ListAPIView):
-    serializer_class = Read_Course_Serialzier
+class ListAPICourses(generics.ListAPIView):
+    serializer_class = ReadCourseSerialzier
     permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self):
         return Course.objects.filter()
 
 
-class Create_API_Course(generics.CreateAPIView):
+class CreateAPICourse(generics.CreateAPIView):
     queryset = Course.objects.all()
-    serializer_class = Create_And_Update_Serializer
-    permission_classes = (permissions.IsAuthenticated, permissions.IsAdminUser)
+    serializer_class = CreateAndUpdateSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
 
 
-class Update_API_Course(generics.RetrieveUpdateAPIView):
+class UpdateAPICourse(generics.RetrieveUpdateAPIView):
     queryset = Course.objects.all()
-    serializer_class = Create_And_Update_Serializer
-    permission_classes = (Permission_Update_Course, permissions.IsAdminUser)
+    serializer_class = CreateAndUpdateSerializer
+    permission_classes = (PermissionUpdateCourse, )
 
 
 class RetrieveAPICourse(generics.RetrieveAPIView):
     queryset = Course.objects.all()
-    serializer_class = Read_Course_Serialzier
-    permission_classes = (permissions.IsAdminUser, Permission_Read_Course, )
+    serializer_class = ReadCourseSerialzier
+    permission_classes = (PermissionReadCourse, )
