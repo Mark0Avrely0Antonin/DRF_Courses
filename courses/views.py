@@ -16,7 +16,7 @@ class List_API_Courses(generics.ListAPIView):
 class Create_API_Course(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = Create_And_Update_Serializer
-    permission_classes = (permissions.IsAuthenticated, permissions.IsAdminUser)
+    permission_classes = (permissions.IsAuthenticated, )
 
     def perform_create(self, serializer):
         serializer.save(user = self.request.user)
@@ -25,7 +25,7 @@ class Create_API_Course(generics.CreateAPIView):
 class Update_API_Course(generics.RetrieveUpdateAPIView):
     queryset = Course.objects.all()
     serializer_class = Create_And_Update_Serializer
-    permission_classes = (Permission_Update_Course, permissions.IsAdminUser)
+    permission_classes = (Permission_Update_Course, )
 
 
 class RetrieveAPICourse(generics.RetrieveAPIView):

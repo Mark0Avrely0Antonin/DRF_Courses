@@ -13,7 +13,7 @@ class Permission_Update_Course(BasePermission):
 class Permission_Read_Course(BasePermission):
 
     def has_object_permission(self, request, view, obj):
-        if obj in request.user.courses.all() or request.is_staff:
+        if obj in request.user.courses.all() or request.user.is_staff:
             return True
         else:
             return False
