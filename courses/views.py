@@ -25,10 +25,16 @@ class CreateAPICourse(generics.CreateAPIView):
 class UpdateAPICourse(generics.RetrieveUpdateAPIView):
     queryset = Course.objects.all()
     serializer_class = CreateAndUpdateSerializer
+    permission_classes = (PermissionUpdateCourse,)
+
+
+class DeleteAPICourse(generics.RetrieveDestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = ReadCourseSerialzier
     permission_classes = (PermissionUpdateCourse, )
 
 
 class RetrieveAPICourse(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = ReadCourseSerialzier
-    permission_classes = (PermissionReadCourse, )
+    permission_classes = (PermissionReadCourse,)
