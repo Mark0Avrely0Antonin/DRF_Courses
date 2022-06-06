@@ -1,11 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import *
-
-
-# Register your models here.
-
+from courses.models import Category_Course, Course, User_Account
 
 
 @admin.register(Category_Course)

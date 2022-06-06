@@ -2,7 +2,7 @@ from rest_framework.permissions import BasePermission
 from rest_framework import permissions
 
 
-class Permission_Update_Course(BasePermission):
+class PermissionUpdateCourse(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:
@@ -10,7 +10,7 @@ class Permission_Update_Course(BasePermission):
         return bool(request.user and request.user.is_staff or obj.user == request.user)
 
 
-class Permission_Read_Course(BasePermission):
+class PermissionReadCourse(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         if obj in request.user.courses.all():
