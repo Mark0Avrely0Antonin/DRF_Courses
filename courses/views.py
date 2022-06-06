@@ -31,4 +31,4 @@ class Update_API_Course(generics.RetrieveUpdateAPIView):
 class RetrieveAPICourse(generics.RetrieveAPIView):
     queryset = Course.objects.all()
     serializer_class = Read_Course_Serialzier
-    permission_classes = (permissions.IsAdminUser, Permission_Read_Course, )
+    permission_classes = (Permission_Read_Course,)
